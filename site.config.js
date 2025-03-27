@@ -1,32 +1,32 @@
 const CONFIG = {
   // profile setting (required)
   profile: {
-    name: "taekyoung",
+    name: process.env.NEXT_PUBLIC_PROFILE ||  "xux",  
     image: "/avatar.svg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
-    role: "backend developer",
+    role: "Full stack programmer",
     bio: "spring boot is my favorite",
-    email: "kyoung@kakao.com",
-    linkedin: "taekyoung-kim125",
-    github: "seaworld0125",
+    email: "xux@xux.com",
+    linkedin: "xux",
+    github: "xux",
     instagram: "",
   },
   projects: [
     {
-      name: `taekyoung-blog`,
-      href: "https://github.com/seaworld0125/notion-x-blog",
+      name: `xux`,
+      href: "",
     },
   ],
   // blog setting (required)
   blog: {
-    title: "taekyoung-log",
-    description: "welcome to taekyoung-log!",
+    title: process.env.NEXT_PUBLIC_TITLE ||  "xux", 
+    description: "welcome to xux-log!",
     scheme: "system", // 'light' | 'dark' | 'system'
   },
 
   // CONFIG configration (required)
-  link: "https://notion-x-blog.vercel.app",
+  link: process.env.NEXT_PUBLIC_LINK ||  "v-premium.vercel.app",
   since: 2024, // If leave this empty, current year will be used.
-  lang: "ko-KR", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']
+  lang: "en-US", // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES', 'ko-KR']
   ogImageGenerateURL: "https://og-image-korean.vercel.app", // The link to generate OG image, don't end with a slash
 
   // notion configuration (required)
