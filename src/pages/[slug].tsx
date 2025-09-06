@@ -14,7 +14,7 @@ import { FilterPostsOptions } from "src/libs/utils/notion/filterPosts"
 
 const filter: FilterPostsOptions = {
   acceptStatus: ["Public", "PublicOnDetail"],
-  acceptType: ["Paper", "Post", "Page"],
+  acceptType: ["Paper", "Post", "Page", "HTML","FullHTML"],
 }
 
 export const getStaticPaths = async () => {
@@ -28,7 +28,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const slug = context.params?.slug
+  const slug = context.params?.slug 
 
   const posts = await getPosts()
   const feedPosts = filterPosts(posts)
@@ -36,7 +36,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const detailPosts = filterPosts(posts, filter)
   const postDetail = detailPosts.find((t: any) => t.slug === slug)
-  const recordMap = await getRecordMap(postDetail?.id!)
+  if (!postDetail) {
+    return { notFound: true }
+  }
+  const recordMap = await getRecordMap(postDetail.id)
+  const isFullHTML = postDetail.type?.[0] === "FullHTML"
 
   await queryClient.prefetchQuery(queryKey.post(`${slug}`), () => ({
     ...postDetail,
@@ -46,6 +50,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
+  isFullHTML,
     },
     revalidate: CONFIG.revalidateTime,
   }

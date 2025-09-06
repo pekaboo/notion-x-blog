@@ -11,6 +11,10 @@ const Detail: React.FC<Props> = () => {
   useMermaidEffect()
 
   if (!data) return null
+  // FullHTML 页面：直接渲染 PostDetail（其内部会输出纯代码 HTML），不包裹外层样式
+  if (data.type?.[0] === "FullHTML") {
+    return <PostDetail />
+  }
   return (
     <StyledWrapper data-type={data.type}>
       {data.type[0] === "Page" && <PageDetail />}

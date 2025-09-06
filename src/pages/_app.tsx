@@ -6,10 +6,21 @@ import { queryClient } from "src/libs/react-query"
 function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => page)
 
+  const content = getLayout(<Component {...pageProps} />)
+
+  // FullHTML 页面不包裹 RootLayout，避免头部等附加内容
+  if ((pageProps as any)?.isFullHTML) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>{content}</Hydrate>
+      </QueryClientProvider>
+    )
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <RootLayout>{getLayout(<Component {...pageProps} />)}</RootLayout>
+        <RootLayout>{content}</RootLayout>
       </Hydrate>
     </QueryClientProvider>
   )
