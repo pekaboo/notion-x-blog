@@ -1,25 +1,25 @@
 const CONFIG = {
   // profile setting (required)
   profile: {
-    name: process.env.NEXT_PUBLIC_PROFILE ||  "xux",  
+    name: process.env.NEXT_PUBLIC_PROFILE ||  "Yitu",  
     image: "/avatar.svg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
     role: "Full stack programmer",
-    bio: "spring boot is my favorite",
-    email: "xux@xux.com",
-    linkedin: "xux",
-    github: "xux",
+    bio: "Geek",
+    email: "me.ajun@qq.com",
+    linkedin: "-",
+    github: "-",
     instagram: "",
   },
   projects: [
     {
-      name: `xux`,
+      name: `Yitu`,
       href: "",
     },
   ],
   // blog setting (required)
   blog: {
-    title: process.env.NEXT_PUBLIC_TITLE ||  "xux", 
-    description: "welcome to xux-log!",
+    title: process.env.NEXT_PUBLIC_TITLE ||  "Yitu", 
+    description: "welcome to Yitu-blog!",
     scheme: "system", // 'light' | 'dark' | 'system'
   },
 
